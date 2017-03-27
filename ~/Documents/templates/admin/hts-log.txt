@@ -1,0 +1,14 @@
+HTTrack3.46+libhtsjava.so.2 launched on Thu, 23 Mar 2017 16:32:42 at http://preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/6769035?_ga=1.218567900.471839887.1490261493
+(httrack http://preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/6769035?_ga=1.218567900.471839887.1490261493 -O ~/Documents/templates/admin )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+16:32:43	Error: 	"Gone" (410) at link preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/&quot;http://themeforest.net/user/pixelcave (from preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/6769035?_ga=1.218567900.471839887.1490261493)
+16:32:43	Error: 	"Gone" (410) at link preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/&quo..." (from preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/6769035?_ga=1.218567900.471839887.1490261493)
+16:32:43	Error: 	"Gone" (410) at link preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/linkid.js (from preview.themeforest.net/item/proui-responsive-bootstrap-admin-template/full_screen_preview/6769035?_ga=1.218567900.471839887.1490261493)
+
+HTTrack Website Copier/3.46 mirror complete in 1 seconds : 5 links scanned, 1 files written (28203 bytes overall) [14056 bytes received at 14056 bytes/sec], 28203 bytes transfered using HTTP compression in 1 files, ratio 38%, 2.5 requests per connection
+(3 errors, 0 warnings, 0 messages)
