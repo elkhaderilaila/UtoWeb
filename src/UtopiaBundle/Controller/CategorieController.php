@@ -146,7 +146,7 @@ class CategorieController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -198,7 +198,7 @@ class CategorieController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -240,7 +240,7 @@ class CategorieController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('categorie_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('supprimer', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

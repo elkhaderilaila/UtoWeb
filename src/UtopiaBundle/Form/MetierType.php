@@ -16,6 +16,7 @@ class MetierType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('save','submit')
         ;
     }
     
