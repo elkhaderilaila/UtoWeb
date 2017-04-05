@@ -50,6 +50,7 @@ class ClientController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->getImageClient()->upload();
             $em->persist($entity);
             $em->flush();
 

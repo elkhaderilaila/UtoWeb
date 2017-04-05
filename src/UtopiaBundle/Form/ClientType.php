@@ -16,8 +16,8 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('imageClient')
+            ->add('nom','text')
+            ->add('imageClient',new ImageClientType())
         ;
     }
     

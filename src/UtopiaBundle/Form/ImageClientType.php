@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class ImageProduitType extends AbstractType
+class ImageClientType extends AbstractType
 
 {
 
@@ -19,7 +19,7 @@ class ImageProduitType extends AbstractType
 
         $builder
 
-            ->add('file',FileType::class);
+            ->add('file','file');
 
     }
 
@@ -30,7 +30,7 @@ class ImageProduitType extends AbstractType
 
         $resolver->setDefaults(array(
 
-            'data_class' => 'UtopiaBundle\Entity\ImageProduit'
+            'data_class' => 'UtopiaBundle\Entity\ImageClient'
 
         ));
 

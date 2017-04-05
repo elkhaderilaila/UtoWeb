@@ -19,7 +19,7 @@ class ImageProduitType extends AbstractType
 
         $builder
 
-            ->add('file',FileType::class);
+            ->add('file','file');
 
     }
 
