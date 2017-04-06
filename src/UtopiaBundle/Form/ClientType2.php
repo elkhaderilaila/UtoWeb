@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use UtopiaBundle\Entity\ImageClient;
 
-class ClientType extends AbstractType
+class ClientType2 extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,7 +17,6 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('nom','text')
-            ->add('imageClient',new ImageClientType())
             ->add('save','submit')
         ;
     }

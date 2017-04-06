@@ -39,41 +39,31 @@ class ImageClient
     private $alt;
 
 
-    public $file;
+    private $file;
 
-    public function getWebPath()
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
     {
-        return null === $this->url ? null : $this->getUploadDir().'/'.$this->url;
+        return $this->file;
     }
 
-    public function getUploadRootDir()
+    /**
+     * Set file
+     *
+     * @param string $url
+     * @return Image
+     */
+    public function setFile($file)
     {
-        // le chemin absolu du répertoire dans lequel sauvegarder les photos de profil
-        return $this->getApplication()->getKernel()->getContainer()->get('kernel')->getRootDir().'/../../../../web/'.$this->getUploadDir();
+        $this->file = $file;
+
+        return $this;
     }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/img';
-    }
-
-    public function upload()
-    {
-        // Nous utilisons le nom de fichier original, donc il est dans la pratique
-        // nécessaire de le nettoyer pour éviter les problèmes de sécurité
-
-        // move copie le fichier présent chez le client dans le répertoire indiqué.
-        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
-
-        // On sauvegarde le nom de fichier
-        $this->url = $this->file->getClientOriginalName();
-        $this->alt= $this->file->getClientOriginalName();
-
-        // La propriété file ne servira plus
-        $this->file = null;
-    }
-
 
 
     /**

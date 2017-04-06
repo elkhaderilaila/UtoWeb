@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use UtopiaBundle\Entity\Client;
 use UtopiaBundle\Form\ClientType;
+use UtopiaBundle\Form\ClientType2;
 
 /**
  * Client controller.
@@ -50,7 +51,24 @@ class ClientController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->getImageClient()->upload();
+
+
+            $file = $entity->getImageClient()->getFile();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $entity->getImageClient()->setUrl($fileName);
+            $entity->getImageClient()->setAlt($fileName);
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('files_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+
             $em->persist($entity);
             $em->flush();
 
@@ -147,7 +165,7 @@ class ClientController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -161,7 +179,7 @@ class ClientController extends Controller
     */
     private function createEditForm(Client $entity)
     {
-        $form = $this->createForm(new ClientType(), $entity, array(
+        $form = $this->createForm(new ClientType2(), $entity, array(
             'action' => $this->generateUrl('client_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
