@@ -30,7 +30,41 @@
                             <h4 class="modal-title">Logo client</h4>
                         </div>
                         <div class="modal-body">
-                            <img  style="width: 100%; height: 100%;" src="{{ asset('uploads/img/' ~ entity.imageClient.url) }}"/>
+                            <div class="content">
+                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                                {{ form_errors(form) }}
+
+                                <div class="form-group">
+
+                                    {{ form_label(form.file, "File", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                    {{ form_errors(form.file) }}
+
+                                    <div class="col-sm-6">
+
+
+                                        <label class="btn btn-default btn-lg" style="width: 60% ; cursor: pointer">
+                                            {{ form_widget(form.file, {'attr': {'class': 'inputFile','id':'my-file-selector','type':'file','style':'display:none;', "onchange":"$('#upload-file-info').html($(this).val());"}}) }}
+                                        </label>
+                                        <span class='label label-info' id="upload-file-info"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-success pull-right'}}) }}
+
+                                    </div>
+                                </div>
+
+
+
+                                {{ form_row(form._token) }}
+
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use UtopiaBundle\Entity\Client;
+use UtopiaBundle\Entity\ImageClient;
 use UtopiaBundle\Form\ClientType;
+use UtopiaBundle\Form\ImageClientType;
 use UtopiaBundle\Form\ClientType2;
 
 /**
@@ -134,14 +136,100 @@ class ClientController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Client entity.');
         }
-
+        $editForm = $this->createEditImageForm($entity->getImageClient());
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'form'=>$editForm->createView()
         );
     }
+
+
+
+    /**
+     * Displays a form to edit an existing ImageClient entity.
+     *
+     * @Route("/{id}/edit", name="imageClient_edit")
+     * @Method("GET")
+     * @Template()
+     */
+    public function editImageAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('UtopiaBundle:ImageClient')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Image Client entity.');
+        }
+
+        $editForm = $this->createEditImageForm($entity);
+
+
+        return array(
+            'entity'      => $entity,
+            'form'   => $editForm->createView(),
+
+        );
+    }
+    /**
+     * Creates a form to edit a ImageClient entity.
+     *
+     * @param ImageClient $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditImageForm(ImageClient $entity)
+    {
+        $form = $this->createForm(new ImageClientType(), $entity, array(
+            'action' => $this->generateUrl('imageClient_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('save', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
+
+    /**
+     * Edits an existing Client entity.
+     *
+     * @Route("/{id}", name="imageClient_update")
+     * @Method("PUT")
+     * @Template("UtopiaBundle:Client:show.html.twig")
+     */
+    public function updateImageAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('UtopiaBundle:ImageClient')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Image Client entity.');
+        }
+
+
+        $editForm = $this->createEditImageForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+
+            $em->flush();
+            return $this->redirect($this->generateUrl('client'));
+        }
+
+        return array(
+            'entity'      => $entity,
+            'form'   => $editForm->createView(),
+
+        );
+    }
+
+
+
+
 
     /**
      * Displays a form to edit an existing Client entity.
@@ -170,6 +258,7 @@ class ClientController extends Controller
         );
     }
 
+
     /**
     * Creates a form to edit a Client entity.
     *
@@ -188,6 +277,8 @@ class ClientController extends Controller
 
         return $form;
     }
+
+
     /**
      * Edits an existing Client entity.
      *
@@ -221,6 +312,8 @@ class ClientController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
+
     /**
      * Deletes a Client entity.
      *
@@ -247,6 +340,8 @@ class ClientController extends Controller
         return $this->redirect($this->generateUrl('client'));
     }
 
+    
+    
     /**
      * Creates a form to delete a Client entity by id.
      *
