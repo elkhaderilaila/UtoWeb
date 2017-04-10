@@ -1,6 +1,73 @@
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Créer un Compte Utilisateur
+        </h1>
+
     </div>
-</form>
+</div>
+<div class="content">
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+
+
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+
+        {{ form_label(form.username, "Username", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+        {{ form_errors(form.username) }}
+
+        <div class="col-sm-6">
+
+            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+
+        {{ form_label(form.email, "Email", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+        {{ form_errors(form.email) }}
+
+        <div class="col-sm-6">
+
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+
+        {{ form_label(form.plainPassword.first, "Password", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+        {{ form_errors(form.plainPassword.first) }}
+
+        <div class="col-sm-6">
+
+            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+        <div class="form-group">
+
+            {{ form_label(form.plainPassword.second, "Password Confirmation", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.plainPassword.second) }}
+
+            <div class="col-sm-6">
+
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    <div class="form-group">
+
+
+        <div class="col-sm-9">
+            <input type="submit" class="btn btn-success pull-right" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+
+        </div>
+    </div>
+        {{ form_row(form._token) }}
+    </form>
+
+
+
+</div>
