@@ -16,8 +16,18 @@ class TemoignageType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('client')
-        ;
+            ->add('client', 'entity', array(
+
+                'class'    => 'UtopiaBundle:Client',
+
+                'property' => 'nom',
+
+                'multiple' => false
+
+            ))
+        ->add('save','submit');
+
+
     }
     
     /**
