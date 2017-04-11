@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class ImageProjet
 {
+
     /**
      * @var integer
      *
@@ -36,17 +37,37 @@ class ImageProjet
     private $alt;
 
 
-    /**
-     * @ORM\ManyToOne(targetEntity="UtopiaBundle\Entity\Projet" , inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    private $file;
 
-    private $projet;
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $url
+     * @return Image
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +78,7 @@ class ImageProjet
      * Set url
      *
      * @param string $url
-     * @return ImageProjet
+     * @return Image
      */
     public function setUrl($url)
     {
@@ -69,7 +90,7 @@ class ImageProjet
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -80,7 +101,7 @@ class ImageProjet
      * Set alt
      *
      * @param string $alt
-     * @return ImageProjet
+     * @return Image
      */
     public function setAlt($alt)
     {
@@ -92,33 +113,10 @@ class ImageProjet
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
         return $this->alt;
-    }
-
-    /**
-     * Set projet
-     *
-     * @param \UtopiaBundle\Entity\Projet $projet
-     * @return ImageProjet
-     */
-    public function setProjet(\UtopiaBundle\Entity\Projet $projet)
-    {
-        $this->projet = $projet;
-
-        return $this;
-    }
-
-    /**
-     * Get projet
-     *
-     * @return \UtopiaBundle\Entity\Projet 
-     */
-    public function getProjet()
-    {
-        return $this->projet;
     }
 }

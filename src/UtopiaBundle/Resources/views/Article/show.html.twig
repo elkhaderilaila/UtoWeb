@@ -1,36 +1,15 @@
 {% extends 'UtopiaBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Article</h1>
+    <div class="row">
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ entity.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col-md-10 blogShort">
+            <h1>{{ entity.titre }}</h1>
+            <img src="{{ asset('uploads/img/' ~ entity.imageArticle.url) }}" style="height: 25%; width: 30%;" class="pull-left img-responsive postImg img-thumbnail margin10">
+            <article>
+                    {{ entity.description }}
+            </article>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('article') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('article_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        </div>
+    </div>
 {% endblock %}

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use UtopiaBundle\Entity\Article;
 use UtopiaBundle\Form\ArticleType;
+use UtopiaBundle\Form\ArticleType2;
 
 /**
  * Article controller.
@@ -50,6 +51,18 @@ class ArticleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $file = $entity->getImageArticle()->getFile();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $entity->getImageArticle()->setUrl($fileName);
+            $entity->getImageArticle()->setAlt($fileName);
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('files_directory'),
+                $fileName
+            );
             $em->persist($entity);
             $em->flush();
 
@@ -146,7 +159,7 @@ class ArticleController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -160,7 +173,7 @@ class ArticleController extends Controller
     */
     private function createEditForm(Article $entity)
     {
-        $form = $this->createForm(new ArticleType(), $entity, array(
+        $form = $this->createForm(new ArticleType2(), $entity, array(
             'action' => $this->generateUrl('article_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -198,7 +211,7 @@ class ArticleController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

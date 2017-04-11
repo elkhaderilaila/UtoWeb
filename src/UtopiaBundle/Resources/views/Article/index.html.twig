@@ -1,43 +1,65 @@
 {% extends 'UtopiaBundle::base.html.twig' %}
 
+
 {% block body -%}
-    <h1>Article list</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Liste des Articles
+            </h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('article_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.titre }}</td>
-                <td>{{ entity.description }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('article_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('article_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
+    <div class="row">
 
-        <ul>
-        <li>
-            <a href="{{ path('article_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+        <div class="col-md-6 col-md-offset-3">
+
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-xs-6">
+                            <h3 class="panel-title"></h3>
+                        </div>
+                        <div class="col col-xs-6 text-right">
+                            <a href="{{ path('article_new') }}" class="btn btn-sm btn-success btn-create">
+                                Créer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-list">
+                        <thead>
+                        <tr>
+                            <th>Id </th>
+                            <th>Titre</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.id }}</td>
+                                <td>{{ entity.titre}}</td>
+                                 <td>
+                                    <a class="btn btn-info pull-right" href="{{ path('article_show', { 'id': entity.id }) }}"><em class="fa fa-plus"></em>  </a>
+                                    <a class="btn btn-warning pull-right" href="{{ path('article_edit', { 'id': entity.id }) }}"><em class="fa fa-pencil"></em></a>
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+

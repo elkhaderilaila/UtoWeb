@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use UtopiaBundle\Entity\ImageArticle;
 
-class ArticleType extends AbstractType
+class ArticleType2 extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,7 +18,6 @@ class ArticleType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('imageArticle',new ImageArticleType())
             ->add('save','submit')
         ;
     }

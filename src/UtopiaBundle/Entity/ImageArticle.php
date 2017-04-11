@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ImageArticle
 {
+
     /**
      * @var integer
      *
@@ -36,10 +37,37 @@ class ImageArticle
     private $alt;
 
 
+    private $file;
+
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $url
+     * @return Image
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -50,7 +78,7 @@ class ImageArticle
      * Set url
      *
      * @param string $url
-     * @return ImageArticle
+     * @return Image
      */
     public function setUrl($url)
     {
@@ -62,7 +90,7 @@ class ImageArticle
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -73,7 +101,7 @@ class ImageArticle
      * Set alt
      *
      * @param string $alt
-     * @return ImageArticle
+     * @return Image
      */
     public function setAlt($alt)
     {
@@ -85,7 +113,7 @@ class ImageArticle
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
